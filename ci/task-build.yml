@@ -12,5 +12,5 @@ inputs:
 - name: greetingsrepo
 
 run:
-  path: ls 
+  path: ci/build.sh 
   dir: greetingsrepo 
