@@ -11,6 +11,10 @@ image_resource:
 inputs:
 - name: greetingsrepo
 
+outputs:
+- name: greeringsrepo/target
+
+
 run:
   path: ci/build.sh 
   dir: greetingsrepo 
