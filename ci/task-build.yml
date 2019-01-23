@@ -12,4 +12,4 @@ inputs:
 - name: greetingsrepo
 
 run:
-  path: ls greetingsrepo 
+  path: ls ./greetingsrepo 
