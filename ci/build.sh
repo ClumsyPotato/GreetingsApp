@@ -1,5 +1,5 @@
 ls
-cd greetingsRepo
+cd greetingsrepo
 ls
 
 mvn clean install

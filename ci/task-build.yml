@@ -1,4 +1,5 @@
----
+
+
 platform: linux
 
 image_resource:
@@ -6,12 +7,9 @@ image_resource:
   source:
     repository: openjdk
     tag: 10.0-jdk-slim
- 
 
-  inputs:
-  - name: greetingsRepo
+inputs:
+- name: greetingsrepo
 
-
-
-  run:
-    path: /greetingsRepo/ci/build.sh   
+run:
+  path: greetingsrepo/ci/build.sh   
