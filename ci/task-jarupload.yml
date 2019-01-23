@@ -10,5 +10,7 @@ inputs:
 - name: /greetingsrepo/target
 
 
-run: /greetingsrepo/ci/upload-jar.sh
+run: 
+  path: ci/upload-jar.sh
+  dir: greetingsrepo
 
