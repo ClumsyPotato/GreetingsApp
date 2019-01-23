@@ -1,4 +1,4 @@
-plarform: linux
+platform: linux
 
 image_resource:
   type: docker-image
@@ -7,7 +7,7 @@ image_resource:
 
 
 inputs:
-- name: /greetingsrepo/targe
+- name: /greetingsrepo/target
 
 
   #run: /greetingsrepo/ci/upload_jar.sh
