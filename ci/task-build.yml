@@ -12,4 +12,4 @@ inputs:
 - name: greetingsrepo
 
 run:
-  path: greetingsrepo/ci/build.sh   
+  path: ls 
