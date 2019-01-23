@@ -5,8 +5,8 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: openjdk
-    tag: 10.0-jdk-slim
+    repository: maven
+    #  tag: 10.0-jdk-slim
 
 inputs:
 - name: greetingsrepo
