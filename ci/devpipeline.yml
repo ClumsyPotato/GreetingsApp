@@ -1,0 +1,33 @@
+resource_types:
+- name: artifactory
+  type: docker-image
+  source:
+    repository: pivotalservices/artifactory-resource
+
+resources:
+- name: maven-repo
+  type: artifactory
+  source:
+    endpoint: http://172.17.0.2:8081/artifactory
+    repository: testrepo/
+    regex: GreetingsApp-(?<version>.*).jar
+    skip_ssl_verification: true
+
+- name: greetingsrepo
+  type: git
+  source:
+    uri: https://github.com/ClumsyPotato/GreetingsApp.git
+    username: ((username))
+    password: ((password))
+
+
+jobs:
+ - name: build-job
+   plan:
+   - get: greetingsrepo
+   - task: build-jar
+     file: greetingsrepo/ci/task-build.yml
+   - task: upload-jar
+     file: greetingsrepo/ci/task-jarupload.yml
+   - put: maven-repo
+     params: {file: artifact/Greetingsapp-*.jar}

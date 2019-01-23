@@ -2,8 +2,9 @@
 
 ls
 mvn clean install
-mkdir artifact
-cp target/*.jar artifact
-
+mkdir ../artifact
+ls target
+cp target/*.jar ../artifact
+ls ../artifact
 
 
