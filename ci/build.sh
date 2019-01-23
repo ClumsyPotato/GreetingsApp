@@ -1,7 +1,7 @@
 #!/bin/sh
 
-
-./mvnw clean install
+ls
+mvn clean install
 
 
 
