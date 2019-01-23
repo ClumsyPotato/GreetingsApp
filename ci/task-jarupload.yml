@@ -8,7 +8,7 @@ image_resource:
 
 inputs:
 - name: artifact
-
+- name: greetingsrepo
 
 run: 
   path: ci/upload-jar.sh
