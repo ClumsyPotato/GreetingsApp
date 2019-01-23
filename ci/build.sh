@@ -1,10 +1,7 @@
 #!/bin/sh
 
-ls
-cd greetingsrepo
-ls
 
-mvn clean install
+./mvnw clean install
 
 
 
