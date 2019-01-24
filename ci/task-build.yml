@@ -12,7 +12,7 @@ inputs:
 - name: greetingsrepo
 
 outputs:
-- name: artifact
+- name: target
 
 
 run:
