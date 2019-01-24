@@ -11,6 +11,5 @@ inputs:
 - name: maven-repo
 
 run:
-  path: sh 
-  args:
-  - ls
+  path: sh
+  args: greetingsrepo/ci/build_image.sh
