@@ -1,8 +1,8 @@
 #!/bin/sh
 
-mkdir target
-mv ../maven-repo/* target
-
+mkdir image-build
+mv ../maven-repo/* image-build
+cp Dockerfile image-build
 ls
 ls ../
 ls ../maven-repo

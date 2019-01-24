@@ -10,6 +10,10 @@ inputs:
 - name: greetingsrepo
 - name: maven-repo
 
+
+outputs:
+- name: image-build
+
 run:
   path: ci/build-image.sh
   dir: greetingsrepo
