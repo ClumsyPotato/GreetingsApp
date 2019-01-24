@@ -1,4 +1,5 @@
 #!/bin/sh
 
 ls
-ls maven-repo
+ls ../
+ls ../maven-repo
