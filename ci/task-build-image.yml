@@ -10,5 +10,6 @@ inputs:
 - name: greetingsrepo
 - name: maven-repo
 
-run: sh
-args: ls
+run:
+  path: sh 
+  args: ls
