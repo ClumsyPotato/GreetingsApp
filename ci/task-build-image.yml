@@ -12,4 +12,5 @@ inputs:
 
 run:
   path: sh 
-  args: ls
+  args:
+  - ls
