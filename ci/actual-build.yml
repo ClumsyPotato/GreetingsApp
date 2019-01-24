@@ -10,5 +10,5 @@ inputs:
 - name: image-build
 
 run:
-  path: echo
-  args: [work]
+  path: sh
+  args: [ls image-build]
