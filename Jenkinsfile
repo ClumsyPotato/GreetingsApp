@@ -1,4 +1,4 @@
-//def label = "maven-${UUID.randomUUID().toString()}"
+def label = "maven"//-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
   containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat')
