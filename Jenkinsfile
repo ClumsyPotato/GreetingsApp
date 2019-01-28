@@ -6,6 +6,7 @@ pipeline {
         stage('Build'){
             steps{
                 echo 'i am doing stuff'
+                ls
             }
         }
     }
