@@ -5,8 +5,8 @@ pipeline {
     stages {
         stage('Build'){
             steps{
-                echo 'i am doing stuff'
                 ls
+                echo 'i am doing stuff'
             }
         }
     }
