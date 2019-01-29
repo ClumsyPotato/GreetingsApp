@@ -16,9 +16,9 @@ podTemplate(label: label, containers: [
 
   node(label) {
     stage('Build a Maven project') {
-      git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+      git 'https://github.com/ClumsyPotato/GreetingsApp.git'
       container('maven') {
-          sh 'mvn -B clean package'
+          sh 'mvn  clean package'
       }
     }
   }
