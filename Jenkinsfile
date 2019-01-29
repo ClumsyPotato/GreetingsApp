@@ -1,3 +1,12 @@
+
+
+node('jenkinsworld'){
+    sh "echo hello"
+    sh "sleep 30"
+}
+
+
+/*
 def label = "maven"//-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
@@ -13,7 +22,7 @@ podTemplate(label: label, containers: [
     }
   }
 }
-
+*/
 /*
 pipeline {
     agent any
