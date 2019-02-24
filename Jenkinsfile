@@ -1,6 +1,6 @@
 /*
 
-node('jenkinsworld'){
+node('master'){
     sh "echo hello"
     sh "sleep 60"
 }
