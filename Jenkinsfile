@@ -16,6 +16,8 @@ podTemplate(label: 'mypod', containers: [
                 sh 'hostname -i'
                 sh 'docker ps'
             }
+	}
+    }
 }
 
 /*
