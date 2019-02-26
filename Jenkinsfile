@@ -10,7 +10,8 @@ podTemplate(label: label, containers: [
     stage('run kubectl') {
       git 'https://github.com/ClumsyPotato/GreetingsApp.git'
       container('kubectl') {
-          sh 'kubectl get pods'
+         // sh 'kubectl get pods'
+         sh 'ls'
       }
     }
   }
