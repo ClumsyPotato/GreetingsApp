@@ -1,12 +1,11 @@
 podTemplate(label: 'mypod', containers: [
     containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
-  ],
-  volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-  ]
+    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', command: 'cat', ttyEnabled: true)
+  //  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
+ 
+ ]
   ) {
+/*
     node('mypod') {
         stage('Check running containers') {
             container('docker') {
@@ -16,7 +15,8 @@ podTemplate(label: 'mypod', containers: [
                 sh 'docker ps'
             }
         }
-       /* 
+*/ 
+      
         stage('Clone repository') {
             container('git') {
                 sh 'whoami'
@@ -34,7 +34,7 @@ podTemplate(label: 'mypod', containers: [
                 }
             }
         }
-       */
+       
     }
 }
 
