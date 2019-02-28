@@ -16,7 +16,7 @@ podTemplate(label: 'mypod', containers: [
                 sh 'docker ps'
             }
         }
-        
+       /* 
         stage('Clone repository') {
             container('git') {
                 sh 'whoami'
@@ -34,6 +34,7 @@ podTemplate(label: 'mypod', containers: [
                 }
             }
         }
+       */
     }
 }
 
