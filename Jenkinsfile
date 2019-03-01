@@ -1,7 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, serviceAccount: 'jenkins', automountServiceAccountToken: true, containers: [
-  containerTemplate(name: 'gradle', image: 'gradle:4.5.1-jdk9', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'maven', image: 'maven', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true)
@@ -12,11 +12,15 @@ volumes: [
 ]){
 
   node(label) {
+    stage("build jar"){
+      container()
+    }
+
     stage('run kubectl') {
    //   git 'https://github.com/ClumsyPotato/GreetingsApp.git'
       container('kubectl') {
-            sh 'kubectl create deployment woah --image=postgresql'
-	    sh 'kubectl get pods'
+            sh 'kubectl create deployment woah --image=postgres'
+	          sh 'kubectl get pods'
         // sh 'ls'
       }
     }
