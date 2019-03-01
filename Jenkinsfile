@@ -15,7 +15,7 @@ volumes: [
     stage('run kubectl') {
    //   git 'https://github.com/ClumsyPotato/GreetingsApp.git'
       container('kubectl') {
-        //  sh 'kubectl create deployment woah --image=postgresql'
+            sh 'kubectl create deployment woah --image=postgresql'
 	    sh 'kubectl get pods'
         // sh 'ls'
       }
