@@ -23,7 +23,7 @@ volumes: [
     stage('run kubectl') {
    //  
       container('kubectl') {
-	    ls /home/.m2/repository
+	    sh  'ls /home/.m2/repository'
             sh 'kubectl create deployment woah --image=postgres'
 	          sh 'kubectl get pods'
         // sh 'ls'
