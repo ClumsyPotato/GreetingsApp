@@ -7,18 +7,23 @@ podTemplate(label: label, serviceAccount: 'jenkins', automountServiceAccountToke
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true)
 ],
 volumes: [
-  hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
+  hostPathVolume(mountPath: '/home/.m2/repository', hostPath: '/tmp/jenkins/.maven'),
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
 ]){
 
   node(label) {
     stage("build jar"){
-      container()
+      git 'https://github.com/ClumsyPotato/GreetingsApp.git'
+      container('maven'){
+        ls 
+        sh 'mvn clean install'
+      }
     }
 
     stage('run kubectl') {
-   //   git 'https://github.com/ClumsyPotato/GreetingsApp.git'
+   //  
       container('kubectl') {
+	    ls /home/.m2/repository
             sh 'kubectl create deployment woah --image=postgres'
 	          sh 'kubectl get pods'
         // sh 'ls'
