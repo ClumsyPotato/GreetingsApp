@@ -16,6 +16,7 @@ volumes: [
       git 'https://github.com/ClumsyPotato/GreetingsApp.git'
       container('maven'){
         sh 'ls' 
+        sh 'pwd'
         sh 'mvn clean install'
       }
     }
@@ -23,8 +24,9 @@ volumes: [
     stage('run kubectl') {
    //  
       container('kubectl') {
-	          sh  'ls /home/.m2/repository'
-            sh 'kubectl create deployment woah --image=postgres'
+            sh 'ls'	      
+            sh  'ls /home/.m2/repository'
+      //      sh 'kubectl create deployment woah --image=postgres'
 	          sh 'kubectl get pods'
         // sh 'ls'
       }
