@@ -8,21 +8,32 @@ resources:
 - name: maven-repo
   type: artifactory
   source:
-    endpoint: http://172.17.0.2:8081/artifactory
-    repository: testrepo/
+    #endpoint: http://192.168.0.108:8081/artifactory
+    endpoint: http://172.17.0.3:8081/artifactory/
+    repository: /example-repo-local/ #repository: /testrepo
     regex: GreetingsApp-(?<version>.*).jar
-    skip_ssl_verification: true
+    username: admin
+    password: password
+    #  skip_ssl_verification: true
 
 - name: greetingsrepo
   type: git
+  webhook_token: 80cf2527576bb9c624320e11dc253c53cdd1dad1
   source:
     uri: https://github.com/ClumsyPotato/GreetingsApp.git
     username: ((username))
     password: ((password))
 
+- name: dockerrepo
+  type: docker-image
+  source:
+   email: ((docker_email))
+   username: ((docker_username))
+   password: ((docker_password))
+   repository: flyingwhale/greetingsrepo
 
 jobs:
- - name: build-job
+ - name: build-artifact
    plan:
    - get: greetingsrepo
    - task: build-jar
@@ -30,4 +41,22 @@ jobs:
    - task: upload-jar
      file: greetingsrepo/ci/task-jarupload.yml
    - put: maven-repo
-     params: {file: artifact/Greetingsapp-*.jar}
+     params: {file: target/GreetingsApp-*.jar}
+     # params: {file: target/GreetingsApp-0.0.1-SNAPSHOT.jar}
+ - name: build-image
+   plan:
+   - get: greetingsrepo
+   - get: maven-repo
+     passed: [build-artifact]
+   - task: build-image
+     file: greetingsrepo/ci/task-build-image.yml
+   - task: build
+     file: greetingsrepo/ci/actual-build.yml
+   - put: dockerrepo
+     params:
+       build: image-build
+
+
+       #   - task: build-image
+       # file: greetingsrepo/ci/task-build-image.yml
+     

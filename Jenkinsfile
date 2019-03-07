@@ -1,18 +1,79 @@
+def label = "worker-${UUID.randomUUID().toString()}"
 
-podTemplate(label: 'mypod', containers: [
-    containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
-    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', command: 'cat', ttyEnabled: true),
-    containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
-  ],
-  volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-  ]
-  ) {
-    node('mypod') {
-        stage('Check running containers') {
-            container('docker') {
-                // example to show you can run docker commands when you mount the socket
-                sh 'hostname'
-                sh 'hostname -i'
-                sh 'docker ps'
-            }
+podTemplate(label: label, serviceAccount: 'jenkins', automountServiceAccountToken: true, containers: [
+  containerTemplate(name: 'maven', image: 'maven', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true)
+],
+volumes: [
+  hostPathVolume(mountPath: '/home/.m2/repository', hostPath: '/tmp/jenkins/.maven'),
+  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+]){
+
+  node(label) {
+    stage("build jar"){
+      git 'https://github.com/ClumsyPotato/GreetingsApp.git'
+      container('maven'){
+        sh 'ls' 
+        sh 'pwd'
+        sh 'mvn clean install'
+      }
+    }
+
+    stage('run kubectl') {
+   //  
+      container('kubectl') {
+            sh 'pwd'
+            sh 'ls'	      
+            sh  'ls /home/.m2/repository'
+      //      sh 'kubectl create deployment woah --image=postgres'
+	          sh 'kubectl get pods'
+        // sh 'ls'
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+def label = "maven-${UUID.randomUUID().toString()}"
+
+podTemplate(label: 'label', containers: [
+  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
+   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true)
+  ]) {
+
+  node(label) {
+    stage('run kubectl') {
+      git 'https://github.com/ClumsyPotato/GreetingsApp.git'
+      container('kubectl') {
+          sh 'kubectl create deployment woah --image=postgresql -n jenkins'
+        // sh 'ls'
+      }
+    }
+  }
+}
+*/
