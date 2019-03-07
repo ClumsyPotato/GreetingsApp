@@ -24,6 +24,7 @@ volumes: [
     stage('run kubectl') {
    //  
       container('kubectl') {
+            sh 'pwd'
             sh 'ls'	      
             sh  'ls /home/.m2/repository'
       //      sh 'kubectl create deployment woah --image=postgres'
