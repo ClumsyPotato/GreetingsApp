@@ -18,7 +18,7 @@ public class GreetingsAppApplicationTests {
 
 	@Test
 	public void testThatIsGoingToFail(){
-		assertTrue("This is failing on purpose", true);
+		assertTrue("This is failing on purpose!", true);
 	}
 
 }
