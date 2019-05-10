@@ -21,6 +21,17 @@ volumes: [
       }
     }
 
+   stage("build image"){
+    container('docker'){
+      pwd
+      ls
+      docker version
+      docker ps
+      docker build -t greetingsapp .      
+       
+    }
+   }
+
     stage('run kubectl') {
    //  
       container('kubectl') {
