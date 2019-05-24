@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: greetings-stranger
+spec:
+  hosts:
+  - "istio.greetings.io"
+  gateways:
+  - greetings-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /kbvrest/rest/
+    rewrite:
+      uri: /hello/stranger/
+    route:
+    - destination:
+        port:
+          number: 80
+        host: greetings-svc

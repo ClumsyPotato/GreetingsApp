@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: greetings-yep
+ 
+spec:
+  hosts:
+  - "istio.greetings.io"
+  gateways:
+  - greetings-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /yep/
+    rewrite:
+      uri: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: greetings-svc
