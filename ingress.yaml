@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: greetings-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: \"false\"
+spec:
+  rules:
+  - host: istio.greetings.io
+    http:
+      paths:
+      - path: /hello/
+        backend:
+          serviceName: greetings-svc
+          servicePort: 80
