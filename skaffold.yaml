@@ -1,0 +1,9 @@
+apiVersion: skaffold/v1beta1
+kind: Config
+build:
+  artifacts:
+  - image: flyingwhale/greetingsapp
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml

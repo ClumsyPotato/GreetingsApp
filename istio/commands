@@ -1,0 +1,2 @@
+istioctl proxy-config listener istio-ingressgateway-65576f8745-x7k5z -n istio-system
+istioctl proxy-config route istio-ingressgateway-65576f8745-x7k5z -n istio-system -o json
